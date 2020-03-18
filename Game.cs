@@ -108,11 +108,13 @@ namespace RPSLS
         {
             if(playerOne.winCounter == 3)
             {
-                Console.WriteLine("Player One wins the game!!!");
+                Console.WriteLine("PLAYER ONE WINS THE GAME!!!");
+                Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("Player Two wins the game!!!");
+                Console.WriteLine("PLAYER TWO WINS THE GAME!!!");
+                Console.ReadLine();
             }
         }
         public void RockCheck(string playerTwoChoice)
