@@ -4,14 +4,14 @@ using System.Text;
 
 namespace RPSLS
 {
-    class Human:Player
+    public class Human:Player
     {
         //Member Variables 
 
         //Constructor
-        public Human(string name)
+        public Human()
         {
-            this.name = name;
+
         }
         //Member Methods
         public override void ChooseOption()
@@ -42,6 +42,13 @@ namespace RPSLS
                     ChooseOption();
                     break;
             }
+        }
+
+        public override void ChooseName()
+        {
+            Console.WriteLine("Type in this Player's name");
+            name = Console.ReadLine();
+            Console.WriteLine("-----------------------------");
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RPSLS
 {
-    abstract class Player
+    public abstract class Player
     {
         //Member Variables
         public List<string> Options;
@@ -19,6 +19,7 @@ namespace RPSLS
         }
         //Member Methods
         public abstract void ChooseOption();
+        public abstract void ChooseName();
 
     }
 }

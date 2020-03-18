@@ -7,63 +7,80 @@ namespace RPSLS
     class Game
     {
         //Member Variable
-        Player playerOne;
-        Player playerTwo;
-        public bool isGamePvP;
+        public Player playerOne;
+        public Player playerTwo;
         //Constructor
 
         //Member Methods
         public void RunGame()
         {
+            DisplayRules();
             ChooseGameType();
-            if(isGamePvP == true)
+
+            PlayRound();
+            
+        }
+
+        public void PlayRound()
+        {
+            while (playerOne.winCounter < 3 && playerTwo.winCounter < 3)
             {
-                while(playerOne.winCounter < 3 && playerTwo.winCounter < 3)
-                {
-                    Console.WriteLine("-----------------------------");
-                    playerOne.ChooseOption();
-                    playerTwo.ChooseOption();
+                Console.WriteLine("-----------------------------");
+                playerOne.ChooseOption();
+                playerTwo.ChooseOption();
 
-                    CompareChoices(playerOne.choice, playerTwo.choice);
-                    Console.WriteLine($"{playerOne.name}'s Score: {playerOne.winCounter} wins");
-                    Console.WriteLine($"{playerTwo.name}'s Score: {playerTwo.winCounter} wins");
-                }
-
-                CheckGameWinner();
+                CompareChoices(playerOne.choice, playerTwo.choice);
+                Console.WriteLine($"{playerOne.name}'s Score: {playerOne.winCounter} wins");
+                Console.WriteLine($"{playerTwo.name}'s Score: {playerTwo.winCounter} wins");
             }
-            else
-            {
-                while(playerOne.winCounter < 3 && playerTwo.winCounter < 3)
-                {
-                    Console.WriteLine("-----------------------------");
-                    playerOne.ChooseOption();
-                    playerTwo.ChooseOption();
 
-                    CompareChoices(playerOne.choice, playerTwo.choice);
-                    Console.WriteLine($"{playerOne.name}'s Score: {playerOne.winCounter} wins");
-                    Console.WriteLine($"Computer's Score: {playerTwo.winCounter} wins");
-                }
+            CheckGameWinner();
+        }
 
-                CheckGameWinner();
-            }
+        public void DisplayRules()
+        {
+            Console.WriteLine($"In Rock Paper Scissors Lizard Spock\n" +
+                              $"Rock Crushes Scissors\n" +
+                              $"Paper Covers Rock\n" +
+                              $"Rock Crushes Lizard\n" +
+                              $"Lizard Poisons Spock\n" +
+                              $"Spock Smashes Scissors\n" +
+                              $"Scissors Decapitates Lizard\n" +
+                              $"Lizard Eats Paper\n" +
+                              $"Paper Disproves Spock\n" +
+                              $"Spock Vaporizes Rock\n" +
+                              $"-----------------------------");
         }
         
         public void ChooseGameType()
         {
-            Console.WriteLine($"Choose whether this game is\n1) Player v. Player\n2) Player v. Computer");
+            //ADD COMPUTER VS COMPUTER GAME TYPE
+            Console.WriteLine($"Choose whether this game is\n1) Player v. Player\n2) Player v. Computer\n3) Computer v. Computer");
             int choice = int.Parse(Console.ReadLine());
             switch (choice)
             {
                 case 1:
-                    playerOne = new Human("Player One");
-                    playerTwo = new Human("Player Two");
-                    isGamePvP = true;
+                    playerOne = new Human();
+                    playerOne.ChooseName();
+                    playerTwo = new Human();
+                    playerTwo.ChooseName();
                     break;
                 case 2:
-                    playerOne = new Human("Player One");
+                    playerOne = new Human();
+                    playerOne.ChooseName();
                     playerTwo = new Computer();
-                    isGamePvP = false;
                     break;
+                case 3:
+                    playerOne = new Computer();
+                    playerOne.ChooseName();
+                    playerTwo = new Computer();
+                    do
+                    {
+                        playerTwo.ChooseName();
+                    }
+                    while (playerOne.name == playerTwo.name);
+                    break;
+
                 default:
                     Console.WriteLine("Please choose one of the options");
                     ChooseGameType();
@@ -108,12 +125,12 @@ namespace RPSLS
         {
             if(playerOne.winCounter == 3)
             {
-                Console.WriteLine("PLAYER ONE WINS THE GAME!!!");
+                Console.WriteLine($"{playerOne.name.ToUpper()} WINS THE GAME!!!");
                 Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("PLAYER TWO WINS THE GAME!!!");
+                Console.WriteLine($"{playerTwo.name.ToUpper()}PLAYER TWO WINS THE GAME!!!");
                 Console.ReadLine();
             }
         }
