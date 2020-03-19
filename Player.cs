@@ -7,15 +7,23 @@ namespace RPSLS
     public abstract class Player
     {
         //Member Variables
-        public List<string> Options;
+        public List<Gesture> options;
         public int winCounter;
-        public string choice;
+        public Gesture choice;
         public string name;
 
         //Constructor
         public Player()
         {
-            Options = new List<string>() {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
+            options = new List<Gesture>()
+            {
+                new Gesture("Rock", new List<string>(){"Paper","Spock" }),
+                new Gesture("Paper", new List<string>(){"Scissors","Lizard"}),
+                new Gesture("Scissors", new List<string>(){"Rock","Spock"}),
+                new Gesture("Lizard", new List<string>(){"Rock","Scissors"}),
+                new Gesture("Spock", new List<string>(){"Lizard","Paper"})
+            };
+
         }
         //Member Methods
         public abstract void ChooseOption();

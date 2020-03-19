@@ -23,19 +23,19 @@ namespace RPSLS
             switch (userInput)
             {
                 case 1:
-                    choice =  Options[0];
+                    choice = options[0];
                     break;
                 case 2:
-                    choice =  Options[1];
+                    choice = options[1];
                     break;
                 case 3:
-                    choice = Options[2];
+                    choice = options[2];
                     break;
                 case 4:
-                    choice = Options[3];
+                    choice = options[3];
                     break;
                 case 5:
-                    choice = Options[4];
+                    choice = options[4];
                     break;
                 default:
                     Console.WriteLine("Type in one of the options");
